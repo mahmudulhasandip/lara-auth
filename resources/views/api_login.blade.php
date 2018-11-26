@@ -24,7 +24,8 @@
 
 
         <main class="py-4">
-            <login-component></login-component>
+            {{-- <login-component></login-component> --}}
+            <router-view></router-view>
         </main>
     </div>
 </body>

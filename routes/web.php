@@ -16,7 +16,10 @@ Route::get('/', function () {
 });
 
 
-Route::get('/api/login', 'ApiLoginController@apiLogin')->name('api.login');
+
+Route::get('/api/login', function () {
+    return view('api_login');
+})->name('api.login');
 
 Auth::routes();
 

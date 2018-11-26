@@ -41,20 +41,14 @@ class LoginController extends Controller
 
 
 
-    /**
-     * Get the needed authorization credentials from the request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    protected function credentials(Request $request)
-    {
-        $field = $this->field($request);
 
-        return [
-            $field => $request->get($this->username()),
-            'password' => $request->get('password'),
-        ];
+
+
+
+    // login with phone number
+    public function username()
+    {
+        return 'phone';
     }
 
     /**
@@ -88,8 +82,5 @@ class LoginController extends Controller
         ], $messages);
     }
 
-    public function username()
-    {
-        return 'phone';
-    }
+
 }

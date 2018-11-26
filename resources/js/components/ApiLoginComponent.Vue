@@ -3,15 +3,15 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Login</div>
+                    <div class="card-header">Login With Api <a class="float-right btn btn-success" href="/">Main Page</a></div>
 
                     <div class="card-body">
-                        <form method="" action="">
+                        <form @submit.prevent="authenticate" method="" action="">
                             <div class="form-group row">
                                 <label for="phone" class="col-sm-4 col-form-label text-md-right">Phone</label>
 
                                 <div class="col-md-6">
-                                    <input id="phone" type="text" class="form-control" name="phone" value="" required autofocus>
+                                    <input id="phone" type="text" class="form-control" name="phone" value="" required autofocus v-model="form.phone">
                                 </div>
                             </div>
 
@@ -19,7 +19,7 @@
                                 <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control" name="password" required>
+                                    <input id="password" type="password" class="form-control" name="password" required v-model="form.password">
 
                                 </div>
                             </div>
@@ -55,7 +55,36 @@
 
 <script>
 export default {
-  name: "login-component"
+  name: "login-component",
+  data() {
+    return {
+      form: {
+        phone: "",
+        password: ""
+      }
+    };
+  },
+  methods: {
+    authenticate() {
+      const credentials = this.$data.form;
+
+      new Promise((res, rej) => {
+        axios
+          .post("/api/auth/login", credentials)
+          .then(response => {
+            res(response.data);
+            console.log(response.data);
+            axios.defaults.headers.common["Authorization"] = `Bearer ${
+              response.data.access_token
+            }`;
+            this.$router.push({ path: "/api/home" });
+          })
+          .catch(err => {
+            rej("Wrong email or password");
+          });
+      });
+    }
+  }
 };
 </script>
 

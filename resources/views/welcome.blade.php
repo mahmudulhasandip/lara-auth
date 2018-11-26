@@ -61,6 +61,34 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .btn {
+                display: inline-block;
+                font-weight: 400;
+                text-align: center;
+                white-space: nowrap;
+                vertical-align: middle;
+                -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                        user-select: none;
+                border: 1px solid transparent;
+                padding: 0.375rem 0.75rem;
+                font-size: 0.9rem;
+                line-height: 1.6;
+                border-radius: 0.25rem;
+                -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+                transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+                transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+            }
+
+            .links > a.btn-primary  {
+                color: #fff;
+                background-color: #3490dc;
+                border-color: #3490dc;
+            }
+
         </style>
     </head>
     <body>
@@ -68,13 +96,13 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a class=" btn btn-primary" href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('api.login') }}">Api Login</a>
+                        <a class=" btn btn-primary" href="{{ route('login') }}">Login</a>
+                        <a class=" btn btn-primary" href="{{ route('api.login') }}">Api Login</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a class=" btn btn-primary" href="{{ route('register') }}">Register</a>
                         @endif
                     @endauth
                 </div>

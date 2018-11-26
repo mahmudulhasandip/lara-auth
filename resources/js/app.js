@@ -7,12 +7,31 @@
 require("./bootstrap");
 
 window.Vue = require("vue");
-// import ApiLogin from "./components/ApiLoginComponent.Vue";
+import VueRouter from "vue-router";
+import ApiLogin from "./components/ApiLoginComponent.vue";
+import ApiHome from "./components/HomeComponent.vue";
 
-Vue.component("login-component", require("./components/ApiLoginComponent.vue"));
+Vue.use(VueRouter);
+
+const routes = [
+    {
+        path: "/api/login",
+        component: ApiLogin
+    },
+    {
+        path: "/api/home",
+        component: ApiHome
+    }
+];
+
+const router = new VueRouter({
+    routes,
+    mode: "history"
+});
 
 const app = new Vue({
     el: "#app",
+    router,
     components: {
         // ApiLogin
     }
